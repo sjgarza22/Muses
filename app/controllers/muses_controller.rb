@@ -1,0 +1,4 @@
+class MusesController < ApplicationController
+
+
+end
