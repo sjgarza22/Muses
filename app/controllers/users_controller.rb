@@ -17,10 +17,15 @@ class UsersController < ApplicationController
         erb :'/users/login'
     end
 
-    # post '/users/login' do
+    post '/users/login' do
+        @user = User.find_by(username: params[:username])
 
-    #     # redirect 'index'
-    # end
+        if @user && @user.authenticate(params[:password])
+            redirect '/dashboard'
+        else
+            redirect '/users/login'
+        end
+    end
 
     # get '/users/:username' do
     #     erb :'/users/profile'
