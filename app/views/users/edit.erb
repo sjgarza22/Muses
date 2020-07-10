@@ -1,0 +1,9 @@
+<div>
+    <form method="post" action="/users/edit">
+        <label for="username">Username:</label>
+        <input name="username" type="text" value="<%= @user.username %>" /><br>
+        <label for="password">Password:</label>
+        <input name="password" type="password" value="<%= @user.password %>" /><br>
+        <input type="submit" value="Save Changes">
+    </form>
+</div>
