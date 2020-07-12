@@ -8,7 +8,8 @@ class UsersController < ApplicationController
 
         if user.save
             redirect '/users/login'
-        else
+        else   
+            flash.next[:signup_error] = "One or more items in the form were left blank. Please try again."
             redirect '/users/signup'
         end
     end
@@ -18,20 +19,25 @@ class UsersController < ApplicationController
     end
 
     post '/users/login' do
-        @user = User.find_by(username: params[:username])
+        user = User.find_by(username: params[:username])
 
-        if @user && @user.authenticate(params[:password])
+        if user && user.authenticate(params[:password])
             redirect '/dashboard'
         else
+            flash.next[:login_error] = "One or more items were left blank. Please try again."
             redirect '/users/login'
         end
     end
 
-    # get '/users/:username' do
+    get '/users/:username' do
+        erb :show
+    end
+
+    # get '/users/:username/profile' do
     #     erb :'/users/profile'
     # end
 
-    # get '/users/settings' do
+    # get '/users/:username/settings' do
     #     erb :'/users/settings'
     # end
 end
