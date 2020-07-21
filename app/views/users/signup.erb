@@ -1,4 +1,6 @@
+
 <div>
+<%= flash[:message] %>
     <form method="post" action="/users/signup">
         <label for="email">Email</label>
         <input name="email" type="text" /><br>
@@ -6,6 +8,6 @@
         <input name="username" type="text" /><br>
         <label for="password">Password:</label>
         <input name="password" type="password" /><br>
-        <input type="submit" value="Log In">
+        <input type="submit" value="Sign Up">
     </form>
 </div>
