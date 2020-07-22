@@ -1,0 +1,11 @@
+<div class="posts">
+    <% @posts.each do |post| %>
+        <div class="post">
+            <h3><%= post.title %></h3>
+            <p><%= post.content %></p>
+            <% if Helpers.is_logged_in?(session) && (Helpers.current_user.id == post.user_id) %>
+                <a href="/posts/edit/<%= post.id %>">
+            <% end %>
+        </div>
+    <% end %>
+</div>
