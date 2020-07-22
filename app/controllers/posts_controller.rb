@@ -14,4 +14,11 @@ class PostsController < ApplicationController
         
     end
 
+    get '/posts/edit/:id' do
+        erb :'/posts/edit'
+    end
+
+    patch '/posts/edit' do
+
+    end
 end
