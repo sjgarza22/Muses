@@ -35,11 +35,16 @@ class UsersController < ApplicationController
         erb :show
     end
 
-    # get '/users/:username/profile' do
-    #     erb :'/users/profile'
-    # end
+    get '/users/:username/profile' do
+        erb :'/users/profile'
+    end
 
-    # get '/users/:username/settings' do
-    #     erb :'/users/settings'
-    # end
+    get '/users/:username/settings' do
+        erb :'/users/settings'
+    end
+
+    get '/logout' do
+        session.clear
+        redirect '/'
+    end
 end
