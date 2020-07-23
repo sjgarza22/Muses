@@ -1,6 +1,7 @@
 class MusesController < ApplicationController
 
     get '/muses' do
+        @muses = Muse.all
         erb :'/muses/show'
     end
 
@@ -11,7 +12,7 @@ class MusesController < ApplicationController
     post '/muses/new' do
         muse = Muse.create(name: params[:name])
 
-        
+
     end
 
 end
