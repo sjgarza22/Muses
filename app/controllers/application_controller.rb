@@ -17,6 +17,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/dashboard' do
+    @posts = Post.all
     erb :dashboard
   end
 
