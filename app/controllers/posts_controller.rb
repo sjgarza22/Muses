@@ -10,15 +10,30 @@ class PostsController < ApplicationController
     end
 
     post '/posts/new' do
-        post = Post.create(title: param(:title), content: param(:content))
+        post = Post.new
+        post.title = params[:title]
+        post.content = params[:content]
+        post.user_id = session[:user_id]
         
+        if post.save
+            redirect "/posts/#{post.id}"
+        end
+    end
+
+    get '/posts/:id' do
+        @post = Post.find_by(id: params[:id])
+        erb :'/posts/single'
     end
 
     get '/posts/edit/:id' do
         erb :'/posts/edit'
     end
 
-    patch '/posts/edit' do
+    patch '/posts/edit/:id' do
+
+    end
+
+    delete '/posts/:id' do
 
     end
 end
