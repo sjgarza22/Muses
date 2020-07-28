@@ -3,13 +3,13 @@
   <form method="post" action='/muses/new'>
     <label>Name:</label>
     <input name="muse_name" type="text" /><br>
-    Content:
-    <input type="text" name="content"><br>
+    About:
+    <input type="text" name="About"><br>
     Create Your Muse:
     <input type="submit" name="submit">
   </form>
 
   <% else %>
       <h1> You Must Be Logged in to Create Muses</h1>
-      <a href="/users/login">Log In Here!</a>
+      <a href="/login">Log In Here!</a>
   <% end %>
