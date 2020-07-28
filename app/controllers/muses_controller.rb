@@ -23,4 +23,5 @@ class MusesController < ApplicationController
         @muse = Muse.find_by_id(params[:id])
         erb :'/muses/show'
     end
+    
 end
