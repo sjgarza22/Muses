@@ -43,4 +43,15 @@ class MusesController < ApplicationController
             redirect "/dashboard"
         end
     end
+
+    delete '/muses/:id' do
+        muse = Muse.find_by_id(params[:id])
+        if muse.user_id == session[:user_id]
+            muse.destory
+        else
+            flash.next[:error] = "I'm sorry, but you aren't allowed here."
+        end
+
+        redirect "/dashboard"
+    end
 end
