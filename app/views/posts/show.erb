@@ -3,8 +3,9 @@
         <div class="post">
             <h3><%= post.title %></h3>
             <p><%= post.content %></p>
-            <% if Helpers.is_logged_in?(session) && (Helpers.current_user.id == post.user_id) %>
-                <a href="/posts/edit/<%= post.id %>">
+            <% if Helpers.is_logged_in?(session) && (Helpers.current_user(session).id == post.user_id) %>
+                <a href="/posts/edit/<%= post.id %>">Edit</a>
+                <a href="/posts/delete/<%= post.id %>">Delete</a>
             <% end %>
         </div>
     <% end %>
