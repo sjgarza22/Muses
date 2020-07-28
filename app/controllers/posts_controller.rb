@@ -26,14 +26,33 @@ class PostsController < ApplicationController
     end
 
     get '/posts/edit/:id' do
-        erb :'/posts/edit'
+       @post = Post.find_by(id: params[:id])
+        if @post.user_id != session[:user_id]
+            flash.next[:error] = "Oops! You're not supposed to be here."
+            redirect "/dashboard"
+        else
+            erb :'/posts/edit'
+        end
     end
 
     patch '/posts/edit/:id' do
-
+        post = Post.find_by(id: params[:id])
+        if post.user_id != session[:user_id]
+            flash.next[:error] = "What are you trying to do? This doesn't belong to you."
+            redirect "/dashboard"
+        else
+            post.update
+        end
     end
 
     delete '/posts/:id' do
-
+        post = Post.find_by_id(id: params[:id])
+        if post.user_id == session[:user_id]
+            post.destroy
+            redirect "/posts"
+        else
+            flash.next[:error] = "Ah-ah-ah! You can't do that."
+            redirect "/dashboard"
+        end
     end
 end
