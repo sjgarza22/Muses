@@ -41,7 +41,9 @@ class PostsController < ApplicationController
             flash.next[:error] = "What are you trying to do? This doesn't belong to you."
             redirect "/dashboard"
         else
-            post.update
+            post.update(post.id, title: params[:title], content: params[:content])
+            post.save
+            redirect "/posts/#{post.id}"
         end
     end
 
