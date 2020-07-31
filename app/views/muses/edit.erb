@@ -3,9 +3,9 @@
   <form method="post" action='/muses/new'>
     <input id="hidden" type="hidden" name="_method" value="PATCH">
     <label>Name:</label>
-    <input name="muse_name" type="text" /><br>
-    Content:
-    <input type="text" name="content"><br>
+    <input name="name" type="text" value="<%= @muse.name %>"/><br>
+    About:
+    <input type="text" name="about" value="<%= @muse.about %>" /><br>
     Create Your Muse:
     <input type="submit" name="submit">
   </form>
