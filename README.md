@@ -11,7 +11,9 @@ To install this program, please clone this repository.
 
 You will need to have Ruby installed, and all additional Gems needed to run this program can be installed with the following command: bundle install
 
-To run the program, you will need to use the Shotgun gem so be sure you have run the above command in your terminal. Once done, type this command next in your terminal: shotgun
+To create the neccessary databases run: rake db:migrate
+
+To run the program, you will need to use the Shotgun gem so be sure you have run the two above commands in your terminal. Once done, type this command next in your terminal: shotgun
 
 Open up your web browser and enter the following url: [localhost:9393](localhost:9393)
 
