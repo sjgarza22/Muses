@@ -6,27 +6,31 @@ class PostsController < ApplicationController
     end
 
     get '/posts/new' do
+        @muses = Muse.where(user_id: session[:user_id])
         erb :'/posts/new'
     end
 
     post '/posts/new' do
+        muse = Muse.find_by(name: params[:muse])
         post = Post.new
         post.title = params[:title]
         post.content = params[:content]
         post.user_id = session[:user_id]
-        
-        if post.save
+        join = MusePost.new(muse_id: muse.id, post_id: post.id)
+        if post.save && join.save
             redirect "/posts/#{post.id}"
         end
     end
 
     get '/posts/:id' do
         @post = Post.find_by(id: params[:id])
+        
         erb :'/posts/single'
     end
 
     get '/posts/edit/:id' do
        @post = Post.find_by(id: params[:id])
+       @muses = Muse.where(user_id: session[:user_id])
         if @post.user_id != session[:user_id]
             flash.next[:error] = "Oops! You're not supposed to be here."
             redirect "/dashboard"
