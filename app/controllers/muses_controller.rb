@@ -13,10 +13,10 @@ class MusesController < ApplicationController
         muse = Muse.new
         muse.name = params[:name]
         muse.about = params[:about]
-        muse.user_id = sessions[:user_id]
+        muse.user_id = session[:user_id]
 
         if muse.save
-            redirect "/muses/#{post.id}"
+            redirect "/muses/#{muse.id}"
         end        
     end
 
