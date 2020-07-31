@@ -2,6 +2,13 @@
     <% if Helpers.is_logged_in?(session) %>
     <%= @error %>
         <form method="post" action="/posts/new">
+            <label for="muse">Muse:</label><br>
+            <input list="muses" name="muse">
+            <datalist id="muses">
+                <% @muses.each do |muse| %>
+                    <option value="<%= muse.name %>">
+                <% end %>
+            </datalist>
             <label for="title">Title:</label><br>
             <input name="title" type="text" /><br>
             <label for="content">Content:</label><br>
@@ -9,7 +16,7 @@
             <input type="submit" value="Submit">
         </form>
     <% else %>
-        <h1>You Must Be Logged in to Create Muses</h1>
+        <h1>You Must Be Logged in to Edit Muses</h1>
         <a href="/login">Log In Here!</a>
     <% end %>
 </div>
