@@ -21,7 +21,7 @@ This webpage will allow you to interact with the application.
 Bug reports and pull requests are welcome on GitHub at https://github.com/sjgarza22/muses. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/sjgarza22/muses/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
-The program is available as open source under the terms of the MIT License.
+The program is available as open source under the terms of the [MIT License](https://mit-license.org/).
 
 ## Code of Conduct
 Everyone interacting in the Muses project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/sjgarza22/muses/blob/master/CODE_OF_CONDUCT.md).
