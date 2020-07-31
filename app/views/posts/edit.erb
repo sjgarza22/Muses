@@ -10,9 +10,9 @@
                 <% end %>
             </datalist>
             <label for="title">Title:</label><br>
-            <input name="title" type="text" /><br>
+            <input name="title" type="text" value="<%= @post.title %>" /><br>
             <label for="content">Content:</label><br>
-            <textarea name="content" rows="4" cols="50">Enter your text here...</textarea><br>
+            <textarea name="content" rows="4" cols="50"><%= @post.content %></textarea><br>
             <input type="submit" value="Submit">
         </form>
     <% else %>
