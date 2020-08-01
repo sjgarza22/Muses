@@ -17,12 +17,14 @@ class MusesController < ApplicationController
 
         if muse.save
             redirect "/muses/#{muse.id}"
+        else
+            redirect "/muses/new"
         end        
     end
 
     get '/muses/:id' do
         @muse = Muse.find_by_id(params[:id])
-        erb :'/muses/show'
+        erb :'/muses/single'
     end
 
     get '/muses/edit/:id' do
@@ -38,7 +40,9 @@ class MusesController < ApplicationController
     patch '/muses/edit/:id' do
         muse = Muse.find_by_id(params[:id])
         if muse.user_id == session[:user_id]
-            muse.update(muse.id, name: params[:name], about: params[:about])
+            muse.name = params[:name]
+            muse.about = params[:about]
+            redirect "/muse/#{muse.id}"
         else
             flash.next[:error] = "I'm sorry, but you aren't allowed here."
             redirect "/dashboard"
