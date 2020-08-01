@@ -3,7 +3,7 @@
     <%= @error %>
         <form method="post" action="/posts/new">
             <label for="muse">Muse:</label><br>
-            <input list="muses" name="muse">
+            <input list="muses" name="muse" value="<%= @muse.name %>">
             <datalist id="muses">
                 <% @muses.each do |muse| %>
                     <option value="<%= muse.name %>">
