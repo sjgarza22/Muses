@@ -1,6 +1,6 @@
 <div class="form">
     <% if Helpers.is_logged_in?(session) %>
-    <%= @error %>
+    <%= flash[:error] %>
         <form method="post" action="/posts/new">
             <label for="muse">Muse:</label><br>
             <input list="muses" name="muse">
