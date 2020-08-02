@@ -1,3 +1,4 @@
+# Add check to make sure username is unique
 class UsersController < ApplicationController
     get '/signup' do
         erb :'/users/signup'
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
             redirect '/dashboard'
         else   
             flash.next[:signup_error] = "One or more items in the form were left blank. Please try again."
-            redirect '/users/signup'
+            redirect '/signup'
         end
     end
 
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
             redirect '/dashboard'
         else
             flash.next[:login_error] = "One or more items were left blank. Please try again."
-            redirect '/users/login'
+            redirect '/login'
         end
     end
 
