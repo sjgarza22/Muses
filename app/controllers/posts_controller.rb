@@ -5,32 +5,28 @@ class PostsController < ApplicationController
         erb :'/posts/show'
     end
 
-    get '/posts/new' do
-        @muses = Muse.where(user_id: session[:user_id])
+    get '/post/new' do
         erb :'/posts/new'
     end
 
-    post '/posts/new' do
-        muse = Muse.find_by(name: params[:muse])
+    post '/post/new' do
         post = Post.new
-        post.title = params[:title]
+        post.title = params[:title] 
         post.content = params[:content]
         post.user_id = session[:user_id]
-        join = MusePost.new(muse_id: muse.id, post_id: post.id)
-        if post.save && join.save
-            redirect "/posts/#{post.id}"
+        post.muse_id = post.user.muses.find_by(name: params[:muse]).id
+        if post.save
+            redirect "/post/#{post.id}"
         end
     end
 
-    get '/posts/:id' do
-        @post = Post.find_by(id: params[:id])
-        
+    get '/post/:id' do
+        @post = Post.find_by(id: params[:id]) 
         erb :'/posts/single'
     end
 
-    get '/posts/edit/:id' do
+    get '/post/edit/:id' do
        @post = Post.find_by(id: params[:id])
-       @muses = Muse.where(user_id: session[:user_id])
         if @post.user_id != session[:user_id]
             flash.next[:error] = "Oops! You're not supposed to be here."
             redirect "/dashboard"
@@ -39,26 +35,27 @@ class PostsController < ApplicationController
         end
     end
 
-    patch '/posts/edit/:id' do
+    patch '/post/edit/:id' do
         post = Post.find_by(id: params[:id])
         if post.user_id != session[:user_id]
             flash.next[:error] = "What are you trying to do? This doesn't belong to you."
             redirect "/dashboard"
         else
-            post.update(post.id, title: params[:title], content: params[:content])
+            post.title = params[:title]
+            post.content = params[:content]
             post.save
-            redirect "/posts/#{post.id}"
+            redirect "/post/#{post.id}"
         end
     end
 
-    delete '/posts/:id' do
+    delete '/post/:id' do
         post = Post.find_by_id(id: params[:id])
-        if post.user_id == session[:user_id]
-            post.destroy
-            redirect "/posts"
-        else
+        if post.user_id != session[:user_id]
             flash.next[:error] = "Ah-ah-ah! You can't do that."
             redirect "/dashboard"
+        else
+            post.destroy
+            redirect "/posts"
         end
     end
 end
