@@ -3,7 +3,9 @@
 </div>
 <div class="posts">
     <!-- This will show all posts made by the users and any posts of other users that they follow -->
-    
+    <% Helpers.current_user(session).muses.each do |muse| %>
+        <a href="/muses/<%= muse.id %>"><%= muse.name %></a>
+    <% end %>
     <% if !(@posts.empty?) %>
     <% @posts.each do |post| %>
         
@@ -12,7 +14,10 @@
             <p><%= post.content %></p>
             <% if Helpers.is_logged_in?(session) && (Helpers.current_user(session).id.equal?(post.user_id)) %>
                 <a href="/posts/edit/<%= post.id %>">Edit</a>
-                <a href="/posts/delete/<%= post.id %>">Delete</a>
+                <form method="post" action="/posts/<%= post.id %>">
+                    <input id="hidden" type="hidden" name="_method" value="DELETE">
+                    <input type="submit" value="Delete" />
+                </form>
             <% end %>
         </div>
     <% end %>
