@@ -1,6 +1,6 @@
 <% if Helpers.is_logged_in?(session) %>
 <%= @error %>
-  <form method="post" action='/muses/new'>
+  <form method="post" action='/muses/edit/<%= @muse.id %>'>
     <input id="hidden" type="hidden" name="_method" value="PATCH">
     <label>Name:</label>
     <input name="name" type="text" value="<%= @muse.name %>"/><br>
