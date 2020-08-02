@@ -5,7 +5,10 @@
             <p><%= post.content %></p>
             <% if Helpers.is_logged_in?(session) && (Helpers.current_user(session).id == post.user_id) %>
                 <a href="/posts/edit/<%= post.id %>">Edit</a>
-                <a href="/posts/delete/<%= post.id %>">Delete</a>
+                <form method="post" action="/posts/<%= @post.id %>">
+                    <input id="hidden" type="hidden" name="_method" value="DELETE">
+                    <input type="submit" value="Delete" />
+                </form>
             <% end %>
         </div>
     <% end %>
