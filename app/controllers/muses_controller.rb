@@ -11,6 +11,7 @@ class MusesController < ApplicationController
 
     post '/muses/new' do
         muse = Muse.new
+        muse.blog_name = params[:blog_name]
         muse.name = params[:name]
         muse.about = params[:about]
         muse.user_id = session[:user_id]
