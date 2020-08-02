@@ -1,5 +1,14 @@
 <div>
-    <h2><%= @muse.name %></h2>
-    <h4>ABOUT</h4>
-    <p><%= @muse.about %>
+    <% @muses.each do |muse| %>
+        <h2><%= muse.name %></h2>
+        <h4>ABOUT</h4>
+        <p><%= muse.about %></p>
+        <% if Helpers.is_logged_in?(session) && (Helpers.current_user(session).id == muse.user_id) %>
+            <a href="/muses/edit/<%= muse.id %>">Edit</a>
+            <form method="post" action="/muses/<%= muse.id %>">
+                <input id="hidden" type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="Delete" />
+            </form>
+        <% end %>
+    <% end %>
 </div>
