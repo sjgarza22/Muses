@@ -1,6 +1,8 @@
 <% if Helpers.is_logged_in?(session) %>
 <%= @error %>
   <form method="post" action='/muses/new'>
+    <label>Blog Name:</label>
+    <input name="blog_name" type="text" /><br>
     <label>Name:</label>
     <input name="name" type="text" /><br>
     About:
