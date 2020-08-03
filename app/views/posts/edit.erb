@@ -1,11 +1,12 @@
 <div class="form">
     <% if Helpers.is_logged_in?(session) %>
-    <%= flash[:edit_error] %>
-        <form method="post" action="/posts/new">
+    <%= flash[:error] %>
+        <form method="post" action="/post/edit/<%= @post.id %>">
+            <input id="hidden" type="hidden" name="_method" value="PATCH">
             <label for="muse">Muse:</label><br>
-            <input list="muses" name="muse" value="<%= @muse.name %>">
+            <input list="muses" name="muse" value="<%= @post.muse.name %>">
             <datalist id="muses">
-                <% @muses.each do |muse| %>
+                <% Helpers.current_user(session).muses.each do |muse| %>
                     <option value="<%= muse.name %>">
                 <% end %>
             </datalist>
